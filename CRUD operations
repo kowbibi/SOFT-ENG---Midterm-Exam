@@ -1,0 +1,11 @@
+function insertMotorcycle($pdo, $model, $brand, $price, $added_by) {
+    $sql = "INSERT INTO motorcycles (model, brand, price, added_by) VALUES (?, ?, ?, ?)";
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute([$model, $brand, $price, $added_by]);
+}
+
+function updateMotorcycle($pdo, $model, $brand, $price, $updated_by, $motorcycle_id) {
+    $sql = "UPDATE motorcycles SET model = ?, brand = ?, price = ?, updated_by = ?, last_updated = NOW() WHERE motorcycle_id = ?";
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute([$model, $brand, $price, $updated_by, $motorcycle_id]);
+}
